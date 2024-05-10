@@ -11,8 +11,15 @@ def main():
 
     # Handle file upload
     if participant_name:
-        uploaded_file = st.file_uploader("Choose a file")
-        process_file_upload(uploaded_file, participant_name)
+        with st.form("upload", clear_on_submit=True):
+            uploaded_file = st.file_uploader("Choose a file")
+            submitted = st.form_submit_button(label='Upload File')
+
+            if submitted:
+                process_file_upload(uploaded_file, participant_name)
+
+    #uploaded_file = st.file_uploader("Choose a file")
+    #process_file_upload(uploaded_file, participant_name)
 
     # Show leaderboard
     try:
